@@ -5,7 +5,8 @@
 
 > Korean version: [README.ko.md](README.ko.md)
 
-No claim extraction. No graph. Just clean, structured paper data.
+Handles the tedious parts — figure cropping, body splitting, metadata extraction —
+so you can focus on the content.
 
 ---
 
