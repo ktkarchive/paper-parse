@@ -1,0 +1,22 @@
+# Output files
+output/
+
+# Secrets
+.env
+*.env
+
+# PDFs (copyright)
+*.pdf
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
