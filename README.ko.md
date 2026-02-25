@@ -63,7 +63,7 @@ output/{slug}/
 ### 1. 클론 및 설치
 
 ```bash
-git clone https://github.com/<your-username>/paper-parse.git
+git clone https://github.com/ktkarchive/paper-parse.git
 cd paper-parse
 pip install -r requirements.txt
 ```
