@@ -18,6 +18,7 @@ so you can focus on the content.
 | `paper-parse-optics-express` | Optics Express (Optica Publishing Group) |
 | `paper-parse-currentopticsandphotonics` | Current Optics and Photonics (Korean Optical Society) |
 | `paper-parse-materials-science-poland` | Materials Science-Poland (De Gruyter) |
+| `paper-parse-solar-energy-materials-solar-cells` | Solar Energy Materials and Solar Cells (Elsevier) |
 
 ---
 

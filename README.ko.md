@@ -17,6 +17,7 @@
 | `paper-parse-optics-express` | Optics Express (Optica Publishing Group) |
 | `paper-parse-currentopticsandphotonics` | Current Optics and Photonics (한국광학회) |
 | `paper-parse-materials-science-poland` | Materials Science-Poland (De Gruyter) |
+| `paper-parse-solar-energy-materials-solar-cells` | Solar Energy Materials and Solar Cells (Elsevier) |
 
 ---
 

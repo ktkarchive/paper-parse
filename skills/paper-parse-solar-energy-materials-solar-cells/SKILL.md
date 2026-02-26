@@ -128,6 +128,50 @@ SEMSC_HEADER_RE = re.compile(
 - Captions appear **below** the figure image.
 - Table headings appear **above** the table.
 
+### Column-gap detection (two-column layout)
+
+In SEMSC's two-column Elsevier layout, single-column figures sit in the left (or right)
+column while the adjacent column may contain body text **on the same page and in the
+same vertical range**.  A naive "bounding box of all non-white pixels" crop includes that
+text.  Fix: detect the white vertical strip between columns and clamp `cmax` there.
+
+```python
+MIN_COL_GAP_PX = 20   # minimum gap width to treat as a column separator
+
+def find_column_gap(region_gray, white_thresh=245):
+    """Return x of the largest white vertical gap in the middle-third, or None."""
+    W = region_gray.shape[1]
+    mid_start, mid_end = W // 3, W * 2 // 3
+    col_nonwhite = np.sum(region_gray < white_thresh, axis=0)
+    in_gap, gap_start, best = False, 0, (0, 0, 0)
+    for x in range(mid_start, mid_end):
+        if col_nonwhite[x] == 0:
+            if not in_gap:
+                in_gap, gap_start = True, x
+        else:
+            if in_gap:
+                w = x - gap_start
+                if w > best[2]:
+                    best = (gap_start, x, w)
+                in_gap = False
+    if in_gap:
+        w = mid_end - gap_start
+        if w > best[2]:
+            best = (gap_start, mid_end, w)
+    return best[0] if best[2] >= MIN_COL_GAP_PX else None
+
+# After computing cmin, cmax from bounding box:
+col_gap_x = find_column_gap(fig_region)
+if col_gap_x is not None and col_gap_x < cmax:
+    cmax = min(cmax, col_gap_x - 1)   # trim to left column
+```
+
+**Why it works:** The column gap in Elsevier PDFs is ≈12 pt (≈48–80 px at ZOOM=4).
+Single-column figures have a gap in the middle third; full-width figures do not.
+
+**Known case:** Figure 6 (Zambrano-Mera 2022) — single-column figure with CRediT text
+in the right column at the same vertical range.  Column gap detected at x=1149/2382 px.
+
 ### Tuning Parameters
 
 | Parameter | Default | Notes |
@@ -135,6 +179,8 @@ SEMSC_HEADER_RE = re.compile(
 | `ZOOM` | `4` | ~300 dpi |
 | `white_thresh` | `245` | Lower to `230` for off-white/gray backgrounds |
 | `pad` | `10` | |
+| `HEADER_H_PX` | `200` | SEMSC running header ends at ~135 px; 200 is safe margin |
+| `MIN_COL_GAP_PX` | `20` | Minimum white gap width to trigger column trim |
 
 ---
 
@@ -293,7 +339,8 @@ python scripts/split_body.py {slug}-full-clean.md <output_dir> --slug {slug}
 
 - [ ] Every `Fig. N.` in the text has a `.png` and `.md`
 - [ ] Caption format uses abbreviated `Fig. N.`
-- [ ] Colored page header bar not visible in any PNG
+- [ ] Colored page header bar **not** visible in any PNG (use `HEADER_H_PX=200`)
+- [ ] No body text from adjacent column visible in figure PNGs (column-gap trim applied)
 - [ ] Abstract has `## Abstract` heading (Elsevier spaced-letter heading → `## Abstract`)
 - [ ] Keywords are comma-separated (Elsevier style)
 - [ ] Received/Revised/Accepted dates in header
@@ -302,4 +349,6 @@ python scripts/split_body.py {slug}-full-clean.md <output_dir> --slug {slug}
 - [ ] `meta.json` has `article_number` field (not `pages`)
 - [ ] `## 1. Introduction` in `{slug}-main.md`
 - [ ] `## References` in `{slug}-reference.md`
+- [ ] Every author row in the markdown table has a non-empty affiliation column
+- [ ] `meta.json` every author entry has non-empty `affiliations` list
 - [ ] `meta.json` populated
