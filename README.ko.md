@@ -19,6 +19,7 @@
 | `paper-parse-materials-science-poland` | Materials Science-Poland (De Gruyter) |
 | `paper-parse-solar-energy-materials-solar-cells` | Solar Energy Materials and Solar Cells (Elsevier) |
 | `paper-parse-materials-today-communications` | Materials Today Communications (Elsevier) |
+| `paper-parse-journal-of-inorganic-materials` | Journal of Inorganic Materials (중국세라믹학회) |
 
 ---
 
