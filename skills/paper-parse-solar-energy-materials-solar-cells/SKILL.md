@@ -176,11 +176,24 @@ Multi-layer systems are frequently used as anti-reflective coatings…
 
 **Equations.** `$…$` inline, `$$…$$` display. Convert Unicode to LaTeX.
 
-**Authors.** Build a Markdown table with superscript affiliation markers:
+**Authors.** Build a Markdown table with **bare ASCII superscript** affiliation markers
+(NOT LaTeX `$^a$` — just `^a`, `^{a,1}`, `^b`, etc.):
 
+```markdown
 | Author | Affiliation | Notes |
 |---|---|---|
-| Dario F. Zambrano-Mera^a | Dept. Ingeniería Química…, Universidad de Chile, Chile | *Corresponding |
+| Dario F. Zambrano-Mera^a | Departamento de Ingeniería Química, Biotecnología y Materiales, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile, Chile | *Corresponding |
+| Roberto Villarroel^{a,1} | Departamento de Ingeniería Química, Biotecnología y Materiales, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile, Chile | ^1 Currently at Instituto de Física, Pontificia Universidad Católica de Chile |
+| María I. Pintor-Monroy^b | Department of Materials Science and Engineering, The University of Texas at Dallas, USA | |
+```
+
+**Superscript key format:**
+- `^a` = affiliation key `a`
+- `^{a,1}` = affiliation key `a` + footnote number `1` (note in the Notes column)
+- `*` in the superscript or Notes column = corresponding author
+
+**Every author must have at least one affiliation.** The Affiliation column must never
+be empty for a data row. Copy the shared affiliation for authors who share the same key.
 
 Include: `*E-mail: author@domain.com`
 
@@ -241,11 +254,24 @@ python scripts/split_body.py {slug}-full-clean.md <output_dir> --slug {slug}
   "authors": [
     {
       "name": "Dario F. Zambrano-Mera",
-      "affiliations": ["Dept. Ingeniería Química…, Universidad de Chile, Chile"],
+      "affiliation_key": "a",
+      "affiliations": ["Departamento de Ingeniería Química, Biotecnología y Materiales, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile, Chile"],
       "corresponding": true,
-      "email": "author@domain.com"
+      "email": "dzambrano@ing.uchile.cl"
+    },
+    {
+      "name": "Roberto Villarroel",
+      "affiliation_key": "a",
+      "affiliations": ["Departamento de Ingeniería Química, Biotecnología y Materiales, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile, Chile"],
+      "corresponding": false,
+      "footnote": "Currently at Instituto de Física, Pontificia Universidad Católica de Chile"
     }
   ],
+  "affiliations": {
+    "a": "Departamento de Ingeniería Química, Biotecnología y Materiales, Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile, Chile",
+    "b": "Department of Materials Science and Engineering, The University of Texas at Dallas, USA",
+    "c": "Departamento de Ingeniería en Maderas, Universidad del Bio-Bio, Chile"
+  },
   "abstract": "Abstract text…",
   "keywords": ["Anti-reflective coatings", "PV glass Cover", "Zr-oxides doping", "Optical properties", "Mechanical properties", "Nanoindentation"],
   "slug": "Zambrano-Mera_2022",
@@ -255,8 +281,11 @@ python scripts/split_body.py {slug}-full-clean.md <output_dir> --slug {slug}
 }
 ```
 
-**Note:** SEMSC uses article numbers instead of page ranges. Set `"pages": null` and
-use `"article_number"` field.
+**Notes:**
+- SEMSC uses article numbers instead of page ranges. Set `"pages": null` and use `"article_number"` field.
+- Every author entry must have a non-empty `affiliations` list. There are no authorless affiliations in this format — the full affiliation string is always in the table row alongside the author name.
+- `affiliation_key` is the letter from the superscript (e.g., `"a"`, `"b"`, `"c"`). Include the top-level `affiliations` dict for fast cross-reference lookup.
+- For `^{a,1}` superscripts: `affiliation_key = "a"`, `footnote = "..."` (content from Notes column).
 
 ---
 
