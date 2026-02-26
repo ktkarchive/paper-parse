@@ -18,6 +18,7 @@
 | `paper-parse-currentopticsandphotonics` | Current Optics and Photonics (한국광학회) |
 | `paper-parse-materials-science-poland` | Materials Science-Poland (De Gruyter) |
 | `paper-parse-solar-energy-materials-solar-cells` | Solar Energy Materials and Solar Cells (Elsevier) |
+| `paper-parse-materials-today-communications` | Materials Today Communications (Elsevier) |
 
 ---
 

@@ -19,6 +19,7 @@ so you can focus on the content.
 | `paper-parse-currentopticsandphotonics` | Current Optics and Photonics (Korean Optical Society) |
 | `paper-parse-materials-science-poland` | Materials Science-Poland (De Gruyter) |
 | `paper-parse-solar-energy-materials-solar-cells` | Solar Energy Materials and Solar Cells (Elsevier) |
+| `paper-parse-materials-today-communications` | Materials Today Communications (Elsevier) |
 
 ---
 
