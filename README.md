@@ -21,6 +21,7 @@ so you can focus on the content.
 | `paper-parse-solar-energy-materials-solar-cells` | Solar Energy Materials and Solar Cells (Elsevier) |
 | `paper-parse-materials-today-communications` | Materials Today Communications (Elsevier) |
 | `paper-parse-journal-of-inorganic-materials` | Journal of Inorganic Materials (Chinese Ceramic Society) |
+| `paper-parse-applied-optics` | Applied Optics (Optica Publishing Group) |
 
 ---
 

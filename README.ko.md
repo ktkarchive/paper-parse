@@ -20,6 +20,7 @@
 | `paper-parse-solar-energy-materials-solar-cells` | Solar Energy Materials and Solar Cells (Elsevier) |
 | `paper-parse-materials-today-communications` | Materials Today Communications (Elsevier) |
 | `paper-parse-journal-of-inorganic-materials` | Journal of Inorganic Materials (중국세라믹학회) |
+| `paper-parse-applied-optics` | Applied Optics (Optica Publishing Group) |
 
 ---
 
