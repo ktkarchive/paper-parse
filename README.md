@@ -23,6 +23,7 @@ so you can focus on the content.
 | `paper-parse-journal-of-inorganic-materials` | Journal of Inorganic Materials (Chinese Ceramic Society) |
 | `paper-parse-applied-optics` | Applied Optics (Optica Publishing Group) |
 | `paper-parse-proceedings-estonian-academy-sciences` | Proceedings of the Estonian Academy of Sciences (Estonian Academy of Sciences) |
+| `paper-parse-thin-solid-films` | Thin Solid Films (Elsevier) |
 
 ---
 

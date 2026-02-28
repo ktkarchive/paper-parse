@@ -22,6 +22,7 @@
 | `paper-parse-journal-of-inorganic-materials` | Journal of Inorganic Materials (중국세라믹학회) |
 | `paper-parse-applied-optics` | Applied Optics (Optica Publishing Group) |
 | `paper-parse-proceedings-estonian-academy-sciences` | Proceedings of the Estonian Academy of Sciences (에스토니아 과학원) |
+| `paper-parse-thin-solid-films` | Thin Solid Films (Elsevier) |
 
 ---
 
